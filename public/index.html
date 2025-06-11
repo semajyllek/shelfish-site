@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelfish - Smart Book Collection Manager</title>
+    <meta name="description" content="AI-powered book scanning and organization. Build your digital library with Shelfish - the smart way to catalog and discover books for individuals and businesses.">
+    
+    <style>
+        :root {
+            --shamrock: #69a167;
+            --russet: #7b3e19;
+            --sunglow: #ffca3a;
+            --desertsand: #d2ab99;
+            --indigo: #541388;
+            --licorice: #0a0a0a;
+            
+            --primary: var(--shamrock);
+            --text-dark: var(--licorice);
+            --text-light: #ffffff;
+            --background: #ffffff;
+            --surface: #fafafa;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background);
+        }
+
+        /* Header */
+        .header {
+            background: var(--background);
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .shell-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .shell-icon {
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            border: 3px solid;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--text-light);
+            color: var(--text-dark);
+            border-color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: var(--surface);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border-color: var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--primary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--background);
+            padding: 2.5rem;
+            border: 3px solid var(--border);
+            border-radius: 12px;
+            text-align: left;
+            transition: border-color 0.2s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--surface);
+            padding: 4rem 2rem;
+            border-top: 3px solid var(--border);
+            border-bottom: 3px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .stat-item p {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: var(--background);
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .store-button {
+            display: inline-block;
+            border: 3px solid var(--text-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .store-button:hover {
+            border-color: var(--primary);
+        }
+
+        .store-button img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            border-top: 3px solid var(--text-dark);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer p {
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                padding: 4rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">
+                <img src="shell-icon.png" alt="Shelfish" class="shell-icon">
+                shelfish
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Smart Book Collection Manager</h1>
+            <p>AI-powered book scanning and organization. Build your digital library with intelligent recommendations, cloud sync, and community features.</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">
+                    📱 Download Now
+                </a>
+                <a href="leaderboard.html" class="btn btn-secondary">
+                    🏆 View Leaderboard
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Everything You Need to Organize Your Library</h2>
+                <p>Powerful features designed for book lovers, collectors, and avid readers</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>AI-Powered Scanning</h3>
+                    <p>Point your camera at any bookshelf. Our advanced AI instantly recognizes and catalogs multiple books with remarkable accuracy using state-of-the-art Gemini technology.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Smart Enrichment</h3>
+                    <p>Automatically enhance your library with corrected titles, complete author names, and intelligent fiction/non-fiction categorization using advanced book databases.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Sync</h3>
+                    <p>Access your library from anywhere. All your books sync seamlessly across all your devices with secure Firebase cloud storage and real-time updates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Smart Recommendations</h3>
+                    <p>Get personalized book suggestions based on your collection. Discover your next great read with AI-powered recommendations tailored to your taste.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Community Leaderboard</h3>
+                    <p>Join a community of book collectors. See how your collection compares and get inspired by fellow readers worldwide with privacy-first leaderboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Your reading habits stay private. We use advanced encryption and give you complete control over your data sharing preferences with opt-in community features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="section-title">
+                <h2>Start Building Your Digital Library Today</h2>
+                <p>Available on iPhone and iPad. Download for free and start organizing your books with the power of AI.</p>
+            </div>
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/shelfish/id6477323100" class="store-button" target="_blank">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='black'/%3E%3Ctext x='100' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='10'%3EDownload on the%3C/text%3E%3Ctext x='100' y='40' text-anchor='middle' fill='white' font-family='Arial' font-size='18' font-weight='bold'%3EApp Store%3C/text%3E%3C/svg%3E" alt="Download on the App Store">
+                </a>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-dark); font-size: 0.9rem; font-weight: 600;">iOS 16.0 or later required</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="press-kit.html">Press Kit</a>
+                <a href="mailto:hello@shelfishapp.com">Contact</a>
+            </div>
+            <p>&copy; 2024 Shelfish. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
