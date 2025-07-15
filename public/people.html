@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People - Shelfish</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #69a167;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .shell-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .header {
+            background: #69a167;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 40px 30px;
+            background: #000000;
+        }
+
+        .person {
+            background: white;
+            border: 2px solid #69a167;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(105, 161, 103, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .person:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(105, 161, 103, 0.25);
+        }
+
+        .person-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .person h2 {
+            color: #69a167;
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .person-pic {
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            object-fit: cover;
+        }
+
+        .person p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-link {
+            color: #ffca3a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: #000000;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer p {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .footer {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="shell-icon.png" alt="shelfish" class="shell-icon">
+                shelfish
+            </a>
+        </nav>
+        
+        <div class="header">
+            <h1>People</h1>
+        </div>
+
+        <div class="content">
+            <div class="person">
+                <div class="person-header">
+                    <img src="personal_pic.png" alt="James Kelly" class="person-pic">
+                    <h2>James Kelly</h2>
+                </div>
+                <p>My name is James. I have a background in healthcare and speech recognition, and a passion for problem-solving. I got an ms in computer engineering in 2021. I built shelfish primarily to solve the problem of remembering what books I own. There's a modest design and some love in there too. It's my first ios app, please send feedback to <a href="mailto:feedback@shelfishapp.com" class="contact-link">feedback@shelfishapp.com</a>.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 shelfish. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
